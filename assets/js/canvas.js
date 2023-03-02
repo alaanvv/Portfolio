@@ -126,7 +126,7 @@ function canvasResize() {
 
 // ---
 
-const canvas = document.querySelector('canvas')
+const canvas = document.querySelector('.canvas-area canvas')
 const ctx = canvas.getContext('2d')
 let canvasWidth = canvas.width
 let canvasHeigth = canvas.heigth

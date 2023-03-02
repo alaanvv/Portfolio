@@ -50,6 +50,7 @@ section {
   overflow: hidden scroll;
   scroll-snap-align: start;
 }
+
 section::-webkit-scrollbar {
   width: 0;
 }
@@ -71,17 +72,27 @@ textarea {
   resize: none;
 }
 
-input, textarea {
+input,
+textarea {
   font-size: 1.1em;
   padding: .1em;
 }
-input:focus, textarea:focus {
+
+input:focus,
+textarea:focus {
   outline: none;
 }
+
 form {
   display: flex;
   flex-direction: column;
   gap: 50px;
+}
+
+canvas {
+  height: 100vh;
+  position: absolute;
+
 }
 
 /* CANVAS */
@@ -101,9 +112,8 @@ form {
   z-index: 1;
 }
 
-canvas {
+.canvas-area canvas {
   align-self: start;
-  position: absolute;
   top: -1px;
   left: -1px;
   width: calc(100vw + 2px);
@@ -185,7 +195,8 @@ canvas {
   margin-top: 0.5em;
 }
 
-.about-me input, .about-me textarea {
+.about-me input,
+.about-me textarea {
   font-family: inherit;
 }
 
@@ -207,14 +218,17 @@ canvas {
   height: 100%;
   z-index: 3;
 }
+
 .album p {
   transform: rotate(-10deg);
   font-size: 0.9em;
 }
+
 .items {
   height: 70%;
   position: relative;
 }
+
 .item {
   transition: all ease-in-out 300ms;
   height: 100%;
@@ -226,26 +240,35 @@ canvas {
   flex-direction: column;
   align-items: center;
 }
+
 .item img {
   width: 50%;
   margin: 0 auto;
 }
+
 .item-1 {
   left: -6.3em;
   transform: rotate(-30deg);
   z-index: 2;
 }
+
 .item-2 {
   left: -6.6em;
   transform: rotate(-45deg);
 }
-.album:hover ~ .items .item, .item:hover {
+
+.album:hover~.items .item,
+.item:hover {
   transform: rotate(0);
 }
-.album:hover ~ .items .item-1, .item-1:hover {
+
+.album:hover~.items .item-1,
+.item-1:hover {
   left: .5em;
 }
-.album:hover ~ .items .item-2, .item-2:hover {
+
+.album:hover~.items .item-2,
+.item-2:hover {
   left: 7.3em;
 }
 
@@ -258,6 +281,20 @@ canvas {
   gap: 50px;
   font-size: .35em;
   height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.projects canvas {
+  top: 0px;
+  left: 0px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.projects h2 {
+  z-index: 1;
 }
 
 .carousel {
@@ -278,16 +315,19 @@ canvas {
   border-radius: 15px;
   text-shadow: 5px black;
 }
+
 .left {
   cursor: pointer;
   width: 10em;
   left: -5em;
 }
+
 .current {
   width: 24em;
   left: calc(50% - 12em);
   box-shadow: 0 0 100px -60px purple;
 }
+
 .right {
   cursor: pointer;
   width: 10em;
@@ -301,6 +341,7 @@ canvas {
 .card h3 {
   text-align: center;
 }
+
 .card img {
   transition: filter ease-in-out 150ms;
   position: absolute;
@@ -308,6 +349,7 @@ canvas {
   width: 100%;
   height: 100%;
 }
+
 .card .desc {
   padding: 25px 20px;
   display: flex;
@@ -319,18 +361,22 @@ canvas {
   height: 100%;
   width: 100%;
 }
+
 .centered.current:hover img {
   z-index: -1;
   filter: blur(15px) brightness(50%);
 }
+
 .centered.current:hover .desc {
   color: #fff;
 }
+
 .card .links {
   display: flex;
   gap: 10px;
   justify-content: space-evenly;
 }
+
 .card .link {
   font-size: .9em;
   color: #000;
@@ -345,77 +391,95 @@ canvas {
     padding: .1em .5em;
   }
 }
+
 @media screen and (max-width: 1250px) {
   .about-me {
     font-size: .3em;
   }
 }
+
 @media screen and (max-width: 1015px) {
   .about-me .right-side img {
     display: none;
   }
+
   .about-me .me-area {
     gap: 0;
   }
 }
+
 @media screen and (max-width: 800px) {
   .contact {
     justify-self: center;
     align-self: center;
   }
+
   .album {
     display: none;
   }
+
   .items {
     display: flex;
     gap: 2em;
   }
+
   .item {
     position: static;
   }
+
   .item {
     transform: rotate(0);
   }
 }
+
 @media screen and (max-width: 650px) {
   .about-me {
     font-size: .28em;
   }
 }
+
 @media screen and (max-width: 600px) {
   .about-me {
     font-size: .25em;
   }
+
   .items {
     gap: 0.8em;
   }
+
   .about-me .contact {
     gap: 1em;
   }
 }
+
 @media screen and (max-width: 490px) {
   .items {
     display: flex;
     align-items: end;
     flex-direction: column;
   }
+
   .social {
     padding-top: 10px;
     height: 100%;
   }
+
   .items .item {
     max-width: 5.5em;
   }
 }
+
 @media screen and (max-width: 375px) {
   .about-me {
     font-size: .225em;
   }
 }
+
 @media screen and (max-width: 330px) {
   .contact {
     flex-direction: column;
   }
+
   .items {
     display: flex;
     flex-direction: row;
@@ -423,14 +487,17 @@ canvas {
     justify-content: space-evenly;
     width: 100%;
   }
+
   .social {
     padding-top: 10px;
     height: 100%;
   }
+
   .items .item {
     max-width: 5.5em;
   }
 }
+
 @media screen and (max-width: 280px) {
   body {
     font-size: 65px;
@@ -442,11 +509,93 @@ canvas {
     font-size: .43em;
   }
 
-  .about-me p, .about-me .text {
+  .about-me p,
+  .about-me .text {
     width: 100%;
   }
 
   .about-me h2 {
     margin-bottom: .5em;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .carousel {
+    font-size: .85em;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .left {
+    left: -8em;
+  }
+
+  .right {
+    left: calc(100% - 2em);
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .card {
+    font-size: .9em;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .card {
+    font-size: .75em;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .card {
+    font-size: .6em;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .card {
+    font-size: .45em;
+    border-radius: 0.5em;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .card {
+    font-size: .45em;
+  }
+  
+  .left {
+    left: -12em;
+  }
+
+  .right {
+    left: calc(100% + 2em);
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .card {
+    font-size: .3em;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .card {
+    font-size: .27em;
+  }
+  
+  .left {
+    left: -14em;
+  }
+
+  .right {
+    left: calc(100% + 4em);
+  }
+}
+
+@media screen and (max-width: 280px) {
+  .card {
+    font-size: .4em;
   }
 }

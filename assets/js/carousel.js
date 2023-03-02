@@ -1,36 +1,27 @@
 swapClasses = (el, remove, add) => { el.classList.remove(remove); el.classList.add(add) }
-// Can't set a constant variable cuz it classes changes everytime
 getLeft = () => document.querySelector('.left')
 getCurrent = () => document.querySelector('.current')
 getRight = () => document.querySelector('.right')
-
 gotoNext = () => {
-  // Rotate in right to left direction
   let left = getLeft()
   let current = getCurrent()
   let right = getRight()
 
-  // The front class give it a z-index
   left.classList.remove('front')
   current.classList.add('front')
   right.classList.add('front')
 
   swapClasses(left, 'left', 'right')
   swapClasses(current, 'current', 'left')
-  swapClasses(right, 'right', 'current')
-  
-  // The centered is optional, it's used in CSS just to
-  // only allow hover when the rotate animation ends
   current.classList.remove('centered')
   setTimeout(() => {
     getCurrent().classList.add('centered')
   }, 1000)
-  
-  // The timeout tries to wait to change the card when it's behind the other
+  swapClasses(right, 'right', 'current')
+
   setTimeout(e => { setCard(left, getCard(right.getAttribute('index'))) }, 350)  
 }
 gotoPrevious = () => {
-  // It makes the same things that the previous but rotating in left to right direction
   let left = getLeft()
   let current = getCurrent()
   let right = getRight()
@@ -49,23 +40,19 @@ gotoPrevious = () => {
 
   setTimeout(e => { setCard(right, getPreviousCard(left.getAttribute('index'))) }, 500)
 }
-
 getCard = index => {
-  // Return the index of the next card, returning 0 if it's ended
   index++
   if (!cards[index]) index = 0
 
   return index
 }
 getPreviousCard = index => {
-  // Do the same but get previous
   index--
   if (index < 0) index = cards.length - 1
 
   return index
 }
 setCard = (el, index) => {
-  // Use React 2 to set the card properties
   const { title, desc, img, links} = cards[index]
   linksStr = ''
   for (link of links) linksStr += `<a href="${link.url}"><div class="link"> ${link.label} </div></a> `
@@ -77,7 +64,6 @@ setCard = (el, index) => {
  </div>`
   el.setAttribute('index', index)
 }
-
 cards = [
   {
     title: 'Cowboy Bebop',
@@ -139,13 +125,15 @@ cards = [
   },
 ]
 
-// Setup
-setCard(getLeft(), cards.length - 1) // Set the left card to the last index
-setCard(getCurrent(), 0) // The first index
-setCard(getRight(), getCard(0)) // Set the right card to the next index
-
+setCard(getLeft(), cards.length - 1)
+setCard(getCurrent(), 0)
+setCard(getRight(), getCard(0))
+let x
 document.addEventListener('click', e => {
-  // Rotate on click (need to add a way to make it automatic too)
-  if (e.target.classList.contains('right') || e.target.parentElement.classList.contains('right')) gotoNext()
-  if (e.target.classList.contains('left') || e.target.parentElement.classList.contains('left')) gotoPrevious()
+  if (e.target.classList.contains('right') || e.target.parentElement.classList.contains('right')) {
+    gotoNext()
+  }
+  if (e.target.classList.contains('left') || e.target.parentElement.classList.contains('left')) {
+    gotoPrevious()
+  }
 })
