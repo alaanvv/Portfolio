@@ -1,12 +1,17 @@
 swapClasses = (el, remove, add) => { el.classList.remove(remove); el.classList.add(add) }
+// Can't set a constant variable cuz it classes changes everytime
 getLeft = () => document.querySelector('.left')
 getCurrent = () => document.querySelector('.current')
 getRight = () => document.querySelector('.right')
+
+
 gotoNext = () => {
+  // Rotate in right to left direction
   let left = getLeft()
   let current = getCurrent()
   let right = getRight()
 
+  // The front class give it a z-index
   left.classList.remove('front')
   current.classList.add('front')
   right.classList.add('front')
@@ -40,6 +45,7 @@ gotoPrevious = () => {
 
   setTimeout(e => { setCard(right, getPreviousCard(left.getAttribute('index'))) }, 500)
 }
+
 getCard = index => {
   index++
   if (!cards[index]) index = 0
@@ -64,6 +70,7 @@ setCard = (el, index) => {
  </div>`
   el.setAttribute('index', index)
 }
+
 cards = [
   {
     title: 'Cowboy Bebop',
@@ -125,15 +132,12 @@ cards = [
   },
 ]
 
-setCard(getLeft(), cards.length - 1)
-setCard(getCurrent(), 0)
-setCard(getRight(), getCard(0))
-let x
+// Setup
+setCard(getLeft(), cards.length - 1) // Set the left card to the last index
+setCard(getCurrent(), 0) // The first index
+setCard(getRight(), getCard(0)) // Set the right card to the next index
+
 document.addEventListener('click', e => {
-  if (e.target.classList.contains('right') || e.target.parentElement.classList.contains('right')) {
-    gotoNext()
-  }
-  if (e.target.classList.contains('left') || e.target.parentElement.classList.contains('left')) {
-    gotoPrevious()
-  }
+  if (e.target.classList.contains('right') || e.target.parentElement.classList.contains('right')) gotoNext()
+  if (e.target.classList.contains('left') || e.target.parentElement.classList.contains('left')) gotoPrevious()
 })
