@@ -373,8 +373,8 @@ canvas {
 
 .card .links {
   display: flex;
-  gap: 10px;
-  justify-content: space-evenly;
+  gap: 50px;
+  justify-content: center;
 }
 
 .card .link {
